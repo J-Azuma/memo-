@@ -66,7 +66,7 @@ class UsersController < ApplicationController
   private
   def user_params
     #セキュリティの都合上、admin属性は編集が許可されていない
-    params.require(:user).permit(:name, :email, :password, :password_cofirmation)
+    params.require(:user).permit(:name, :email, :password, :password_cofirmation, :unique_name)
   end
 
   def correct_user

@@ -5,4 +5,5 @@
    | <%= link_to 'delete', user, method: :delete,
                         data: {confirm: "You sure?"} %>
  <% end %>
+ <p class= "unique_name"><%= "@" + user.unique_name %></p>
 </li>

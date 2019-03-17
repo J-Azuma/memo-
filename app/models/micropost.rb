@@ -23,6 +23,16 @@ class Micropost < ApplicationRecord
     fav_users.include?(user)
   end
 
+  def self.including_replies(user_id)
+    following_ids = "SELECT followed_id FROM relationships
+                         WHERE follower_id = :user_id"
+    self.where("user_id IN (#{following_ids}) 
+               OR user_id = :user_id
+               OR in_reply_to = :user_id",
+               following_ids: following_ids, 
+               user_id: user_id)
+  end
+
   private
 
   def picture_size
